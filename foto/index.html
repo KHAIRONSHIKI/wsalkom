@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Alat Komunikasi - TK Islam Bina Ummah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ff9f43;
+            --text: #2d3436;
+        }
+
+        /* Latar belakang gradasi pastel yang halus */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1f3 100%); 
+            background-attachment: fixed;
+            color: var(--text); 
+            margin: 0; 
+            padding: 20px; 
+            min-height: 100vh;
+        }
+
+        header { 
+            text-align: center; 
+            padding: 40px; 
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 30px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            margin-bottom: 30px; 
+            border: 3px solid #fff;
+        }
+        header h1 { color: var(--primary); margin: 0; font-size: 2.2rem; }
+        
+        .section-title { text-align: center; margin: 40px 0 20px; color: var(--primary); font-size: 1.8rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1000px; margin: auto; }
+        
+        .card { 
+            background: white; 
+            border-radius: 25px; 
+            padding: 20px; 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s; 
+            border: 2px solid #fff;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--secondary); }
+        
+        .card img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; }
+        .card h3 { color: var(--primary); margin: 15px 0 5px; }
+        .card p { font-size: 0.95rem; color: #636e72; }
+
+        .quiz-container { max-width: 600px; margin: 40px auto; background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        .quiz-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer; background: white; font-size: 16px; font-weight: 600; transition: 0.3s; }
+        .quiz-btn:hover { border-color: var(--primary); background: #f1f5f9; }
+        
+        .correct { background-color: #55efc4 !important; color: #006266 !important; border-color: #00b894 !important; }
+        .wrong { background-color: #fab1a0 !important; color: #d63031 !important; border-color: #e17055 !important; }
+        
+        #result-box { display: none; text-align: center; }
+        .btn-restart { background: var(--primary); color: white; padding: 15px 30px; border: none; border-radius: 15px; cursor: pointer; font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🏫 Media Belajar Alat Komunikasi</h1>
+    <p>Oleh: <strong>Usmayanti</strong> | TK ISLAM BINA UMMAH 🧩</p>
+</header>
+
+<!-- Materi Tradisional -->
+<h2 class="section-title">✨ Alat Komunikasi Tradisional</h2>
+<div class="grid">
+    <div class="card">
+        <img src="kntg.jpg" alt="Kentongan">
+        <h3>Kentongan</h3>
+        <p>Alat dari bambu yang dipukul untuk memberi tanda bahaya atau pengumuman warga.</p>
+    </div>
+    <div class="card">
+        <img src="bedug.jpg" alt="Bedug">
+        <h3>Bedug</h3>
+        <p>Alat musik pukul besar di masjid untuk menandai waktu shalat.</p>
+    </div>
+    <div class="card">
+        <img src="mrpt.jpg" alt="Merpati">
+        <h3>Merpati</h3>
+        <p>Burung pintar yang dilatih untuk membawa pesan surat dalam tabung kecil.</p>
+    </div>
+</div>
+
+<!-- Materi Modern -->
+<h2 class="section-title">🚀 Alat Komunikasi Modern</h2>
+<div class="grid">
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Smartphone">
+        <h3>Smartphone</h3>
+        <p>Alat canggih untuk telepon, video call, dan mencari informasi lewat internet.</p>
+    </div>
+    <div class="card">
+        <img src="tv.jpg" alt="Televisi">
+        <h3>Televisi</h3>
+        <p>Alat untuk menonton berita, film, dan kartun dengan gambar dan suara.</p>
+    </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600" alt="Laptop">
+        <h3>Laptop</h3>
+        <p>Komputer portabel yang digunakan untuk belajar dan mengirim email.</p>
+    </div>
+</div>
+
+<!-- Kuis -->
+<div class="quiz-container" id="quiz-box">
+    <h2 id="q-title" style="margin-top:0;">📝 Kuis Seru!</h2>
+    <p id="q-text" style="font-size: 1.2rem;"></p>
+    <div id="options-container"></div>
+</div>
+
+<div class="quiz-container" id="result-box">
+    <h2>🎉 Kuis Selesai!</h2>
+    <p>Tadaaaa ! Ini hasil kamu:</p>
+    <h1 id="score-text" style="font-size: 3rem; color: var(--primary);">0</h1>
+    <button class="btn-restart" onclick="window.location.reload();">Coba Lagi</button>
+</div>
+
+<script>
+    const quizData = [
+        { q: "Alat dari bambu yang dipukul untuk tanda bahaya disebut?", a: ["Kentongan", "Handphone", "Televisi"], c: 0 },
+        { q: "Apa nama alat yang sering ada di masjid untuk tanda waktu shalat?", a: ["Radio", "Bedug", "Laptop"], c: 1 },
+        { q: "Manakah alat yang bisa digunakan untuk telepon?", a: ["Smartphone", "Kentongan", "Daun Lontar"], c: 0 },
+        { q: "Apa nama burung yang bisa mengantar surat?", a: ["Merpati", "Burung Hantu", "Elang"], c: 0 },
+        { q: "Untuk menonton kartun, kita menggunakan?", a: ["Televisi", "Radio", "Bedug"], c: 0 }
+    ];
+
+    let currentQ = 0, score = 0;
+
+    function loadQuiz() {
+        const data = quizData[currentQ];
+        document.getElementById('q-text').innerText = (currentQ + 1) + ". " + data.q;
+        const optCont = document.getElementById('options-container');
+        optCont.innerHTML = '';
+        
+        data.a.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAns(i, btn);
+            optCont.appendChild(btn);
+        });
+    }
+
+    function checkAns(idx, btn) {
+        const allBtns = document.querySelectorAll('.quiz-btn');
+        allBtns.forEach(b => b.disabled = true);
+        
+        if (idx === quizData[currentQ].c) {
+            btn.classList.add('correct');
+            score += 20;
+        } else {
+            btn.classList.add('wrong');
+            allBtns[quizData[currentQ].c].classList.add('correct');
+        }
+        
+        setTimeout(() => {
+            currentQ++;
+            if(currentQ < quizData.length) loadQuiz();
+            else showResult();
+        }, 1500);
+    }
+
+    function showResult() {
+        document.getElementById('quiz-box').style.display = 'none';
+        document.getElementById('result-box').style.display = 'block';
+        document.getElementById('score-text').innerText = score;
+    }
+
+    loadQuiz();
+</script>
+
+</body>
+</html>
